@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Calculator</title>
+</head>
+  <link rel="icon" type="image/x-icon" href="favicon calculator img.png">
+  <style>
+    
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background: linear-gradient(#03A9F4,#042c77) ;
+}
+
+.container{
+  width: 22%;
+  height: 70vh;
+  background:linear-gradient(#61dbf6, #03284d);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 10px 10px;
+}
+
+
+input{
+  width: 80%;
+  height: 10vh;
+  border-radius: 15px;
+  outline: none;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 2.5em;
+  margin-top: 25px;
+  background-color: gray;
+  color: white;
+  border: 2px solid white;
+  text-align: right;
+}
+
+.btn-div{
+  margin-top: 20px;
+}
+
+p{
+  margin-top: 5px;
+}
+
+button{
+  width: 21%;
+  height: 9vh;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 1.3em;
+
+}
+
+button:hover{
+  background-color: gray;
+  color: white;
+  box-shadow: 3px 0px 4px 0px black;
+  cursor: pointer;
+}
+
+.sum{
+  background-color: rgb(14, 16, 129);
+  color: white;
+  border: 1px solid rgb(12, 14, 120);
+  
+}
+
+.sum:hover{
+  background-color: #13064c;
+}
+
+.clear{
+  width: 43%;
+  background-color: rgb(200, 32, 32);
+  color: white;
+}
+
+.clear:hover{
+  background-color: red;
+}
+
+
+
+
+.equal{
+  background-color: rgb(46, 143, 46);
+  color: white;
+}
+
+
+.equal:hover{
+  background-color: green;
+}
+
+
+@media(max-Width: 992px){
+  .container{
+    height: 55vh;
+    border-radius: 10px;
+    padding: 3px;
+  }
+
+  button{
+    height: 7vh;
+    font-size: 1.1em;
+    border-radius: 8px;
+
+  }
+
+  input{
+    height: 8vh;
+    font-size: 1.5em;
+    margin-top: 15px;
+  }
+
+}
+
+
+
+@media(max-Width: 768px){
+  .container{
+    height: 43vh;
+    padding: 5px;
+  }
+
+  button{
+    height: 5vh;
+    font-size: 0.8em;
+    border-radius: 6px;
+
+  }
+
+  input{
+    height: 6vh;
+    font-size: 1.3em;
+    border-radius: 10px;
+  }
+
+}
+
+
+
+
+@media(max-Width: 556px){
+  .container{
+    height: 37vh;
+    padding: 6px;
+  }
+
+  button{
+    height: 4vh;
+    font-size: 0.7em;
+    border-radius: 4px;
+  }
+
+  input{
+    height: 5vh;
+    font-size: 1em;
+    border-radius: 8px;
+    margin-bottom: 0px;
+  }
+
+}
+
+
+@media(Width <= 556px){
+  .container{
+    height: 29vh;
+    padding: 6px;
+  }
+
+  button{
+    height: 3vh;
+    font-size: 0.5em;
+    border-radius: 4px;
+  }
+
+  input{
+    margin-top: 8px;    
+    height: 4vh;
+    font-size: 0.8em;
+    border-radius: 6px;
+    width: 70%;
+  }
+  .btn-div{
+  margin-top: 5px;
+}
+
+}
+  </style>
+<body>
+  
+
+  <div class="container">
+
+    <input type="text" placeholder="0">
+
+    <div class="btn-div"></div>
+    
+    <p>
+    <button onclick="remove()">C</button>
+    <button onclick="num(' % ')">%</button>
+    <button class="clear" onclick="removeLast()">Back</button>
+    </p>
+
+    <p>
+      <button onclick="num('7')">7</button>
+      <button onclick="num('8')">8</button>
+      <button onclick="num('9')">9</button>
+      <button class="sum" onclick="num(' * ')">x</button>
+    </p>
+
+    <p>
+      <button onclick="num('4')">4</button>
+      <button onclick="num('5')">5</button>
+      <button onclick="num('6')">6</button>
+      <button class="sum" onclick="num(' - ')">-</button>
+    </p>
+
+    <p>
+      <button onclick="num('1')">1</button>
+      <button onclick="num('2')">2</button>
+      <button onclick="num('3')">3</button>
+      <button class="sum" onclick="num(' + ')">+</button>
+    </p>
+
+    <p>
+      <button onclick="num('00')">00</button>
+      <button onclick="num('0')">0</button>
+      <button class="equal" onclick="result()">=</button>
+      <button class="sum" onclick="num(' / ')">/</button>
+    </p>
+    
+  </div>
+  
+  
+  
+  <script>
+    
+    
+    let inputData = document.querySelector("input")
+    let data = "";
+    
+    function rander(){
+      let getLocalStorage = localStorage.getItem('calculate')||'';
+      inputData.value = getLocalStorage;
+      data = getLocalStorage.toString()
+    }
+      rander();
+      
+    
+    function num(inputNum){
+      inputData.value += inputNum;
+      data += inputNum;
+    }
+    
+    
+    function result (){
+      let finalResult = eval (data);
+      inputData.value = finalResult;
+      localStorage.setItem('calculate',finalResult)
+
+      data = finalResult.toString()
+    }
+    
+    function remove(){
+      data = "";
+      localStorage.clear();
+      inputData.value = '';
+    }
+    
+    function removeLast(){
+      data = data.slice(0, -1);
+      inputData.value = data;
+      localStorage.setItem('calculate', data);
+    }
+    
+  </script>
+</body>
+</html>
