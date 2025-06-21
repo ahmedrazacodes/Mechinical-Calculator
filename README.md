@@ -1,1 +1,1 @@
-https://webdeveloperahmed92.github.io/Mechinical-Calculator/
+https://ahmedrazacodes.github.io/Mechinical-Calculator/
